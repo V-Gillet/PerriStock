@@ -1,65 +1,212 @@
-# Welcome to your Expo app 👋
+# Perristock 🧵
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A personal inventory management app for DMC embroidery threads, built with React Native and Expo.
 
-## Get started
+## 📱 About
 
-To start the app, in your terminal run:
+Perristock helps you keep track of your embroidery thread collection. Features include:
 
-```bash
-npm run start
-```
+- 🎨 **Complete DMC Thread Database** - Browse all 500+ DMC thread colors
+- 📦 **Stock Management** - Track quantity and add notes for each thread
+- 🔍 **Smart Search** - Find threads by DMC number, name, or color
+- 📊 **Grid & List Views** - Switch between layouts with a toggle, for tabs
+- 🎨 **Color Preview** - See accurate thread colors at a glance
 
-In the output, you'll find options to open the app in:
+## 🚀 Getting Started
 
-- [a development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [an Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [an iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Prerequisites
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- [Expo CLI](https://docs.expo.dev/get-started/installation/)
 
-## Workflows
+### Installation
 
-This project is configured to use [EAS Workflows](https://docs.expo.dev/eas/workflows/get-started/) to automate some development and release processes. These commands are set up in [`package.json`](./package.json) and can be run using NPM scripts in your terminal.
-
-### Previews
-
-Run `npm run draft` to [publish a preview update](https://docs.expo.dev/eas/workflows/examples/publish-preview-update/) of your project, which can be viewed in Expo Go or in a development build.
-
-### Development Builds
-
-Run `npm run development-builds` to [create a development build](https://docs.expo.dev/eas/workflows/examples/create-development-builds/). Note - you'll need to follow the [Prerequisites](https://docs.expo.dev/eas/workflows/examples/create-development-builds/#prerequisites) to ensure you have the correct emulator setup on your machine.
-
-### Production Deployments
-
-Run `npm run deploy` to [deploy to production](https://docs.expo.dev/eas/workflows/examples/deploy-to-production/). Note - you'll need to follow the [Prerequisites](https://docs.expo.dev/eas/workflows/examples/deploy-to-production/#prerequisites) to ensure you're set up to submit to the Apple and Google stores.
-
-## Hosting
-
-Expo offers hosting for websites and API functions via EAS Hosting. See the [Getting Started](https://docs.expo.dev/eas/hosting/get-started/) guide to learn more.
-
-
-## Get a fresh project
-
-When you're ready, run:
+1. Clone the repository:
 
 ```bash
-npm run reset-project
+git clone <your-repo-url>
+cd perristock
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+2. Install dependencies:
 
-## Learn more
+```bash
+npm install
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+3. Start the development server:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npm start
+```
 
-## Join the community
+4. Run on your device:
+   - **Android**: Press `a` or scan QR code with Expo Go
+   - **iOS**: Press `i` or scan QR code with Expo Go (iOS only)
+   - **Web**: Press `w`
 
-Join our community of developers creating universal apps.
+## 📦 Building an APK for Android
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+This app is designed for personal use and manual distribution (no Play Store required).
+
+### Option 1: Using EAS Build (Recommended)
+
+1. **Install EAS CLI globally:**
+
+```bash
+npm install -g eas-cli
+```
+
+2. **Login to your Expo account:**
+
+```bash
+eas login
+```
+
+3. **Configure the project (if not already done):**
+
+```bash
+eas build:configure
+```
+
+4. **Build the APK:**
+
+For a preview/test build:
+
+```bash
+eas build --platform android --profile preview
+```
+
+For a production build:
+
+```bash
+eas build --platform android --profile production
+```
+
+5. **Download the APK:**
+
+Once the build completes, you'll receive a download link. You can also download it via:
+
+```bash
+eas build:list
+eas build:download --platform android --latest
+```
+
+### Option 2: Local Build (Advanced)
+
+If you prefer to build locally without EAS:
+
+1. **Install Android Studio and configure environment**
+
+2. **Prebuild the native project:**
+
+```bash
+npx expo prebuild --platform android
+```
+
+3. **Build with Gradle:**
+
+```bash
+cd android
+./gradlew assembleRelease
+```
+
+4. **Find your APK at:**
+
+```
+android/app/build/outputs/apk/release/app-release.apk
+```
+
+### Distributing Your APK
+
+- **Email/Messaging**: Send the APK directly to users
+- **Cloud Storage**: Upload to Google Drive, Dropbox, or similar
+- **Web Hosting**: Host on your own server
+
+**Note**: Users will need to enable "Install from Unknown Sources" in their Android settings.
+
+## 📝 Configuration
+
+### Update Package Name
+
+Before building, update the package name in `app.json`:
+
+```json
+{
+  "expo": {
+    "android": {
+      "package": "com.yourname.perristock"
+    }
+  }
+}
+```
+
+## 🗂️ Project Structure
+
+```
+perristock/
+├── app/
+│   ├── (tabs)/          # Main navigation tabs
+│   ├── hooks/           # Custom React hooks
+│   └── services/        # Database and business logic
+├── components/          # Reusable UI components
+├── constants/           # Colors and theme configuration
+└── assets/             # Images and static files
+```
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Expo](https://expo.dev/) / [React Native](https://reactnative.dev/)
+- **Database**: [Expo SQLite](https://docs.expo.dev/versions/latest/sdk/sqlite/)
+- **Navigation**: [Expo Router](https://docs.expo.dev/router/introduction/)
+- **Language**: TypeScript
+- **UI**: React Native components with custom styling
+
+## 🎨 Key Features Explained
+
+### Database Structure
+
+- **`dmc_threads`**: Reference table with all 500+ DMC threads
+- **`stock_threads`**: Your personal inventory linked to DMC reference
+
+### Color Palette
+
+The app uses a warm, craft-inspired color scheme defined in `constants/Colors.ts`:
+
+- **Primary**: `#734A1F` (Brown)
+- **Secondary**: `#B8956A` (Tan)
+- **Accent**: `#E6D5C3` (Cream)
+- **Error**: `#C94D4D` (Red)
+
+### Storage Location
+
+Database file: `perristock.db` is stored locally on the device using Expo SQLite.
+
+To export your database, you can add this utility in the database service:
+
+```typescript
+import * as FileSystem from 'expo-file-system';
+import * as Sharing from 'expo-sharing';
+
+async exportDatabase() {
+  const dbPath = `${FileSystem.documentDirectory}SQLite/perristock.db`;
+  await Sharing.shareAsync(dbPath);
+}
+```
+
+## 📄 License
+
+This is a personal project for managing embroidery thread inventory. Feel free to fork and adapt for your own use.
+
+## 🤝 Contributing
+
+This is a personal project, but suggestions and improvements are welcome! Feel free to open an issue or submit a pull request.
+
+## 📧 Contact
+
+For questions or support, please open an issue on GitHub.
+
+---
+
+Made with 🧵 for embroidery enthusiasts
